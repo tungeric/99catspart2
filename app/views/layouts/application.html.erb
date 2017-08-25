@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NinetyNineCats</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <% @user = current_user  %>
+
+    <% if logged_in? %>
+      <nav id="user-nav">
+        <ul class="">
+          <li><a href="#">My cats</a></li>
+          <li><a href="#">YOUR cats</a></li>
+          <li><a href="#">OUR cats</a></li>
+        </ul>
+        <%= button_to "logout", :session, method: :delete %>
+      </nav>
+      <h1> <%= @user.user_name %> </h1>
+    <% else %>
+      <%= link_to "Sign up", new_user_url %>
+      <%= link_to "Sign In", new_session_url %>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
